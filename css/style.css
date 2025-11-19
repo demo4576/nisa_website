@@ -472,6 +472,11 @@ html:not([data-lang]) .lang-hi {
   padding: 3rem 1.5rem;
 }
 
+.home-section p {
+  margin-top: 0.4rem;   /* reduce from default */
+  line-height: 1.55;
+}
+
 .home-section:nth-of-type(even) {
   background-color: #f7f9ff;
 }
