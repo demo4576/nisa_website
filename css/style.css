@@ -56,19 +56,19 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 40;
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(16px);
   background: rgba(255, 255, 255, 0.96);
-  border-bottom: 1px solid rgba(205, 216, 235, 0.9);
+  border-bottom: 1px solid rgba(214, 220, 236, 0.7);
+  box-shadow: 0 4px 18px rgba(15, 35, 80, 0.06);
 }
 
 .header-inner {
-  max-width: 1080px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0.7rem 1.5rem;
+  padding: 0.55rem 1rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 /* Brand */
@@ -76,7 +76,7 @@ a:hover {
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.55rem;
   text-decoration: none;
   color: inherit;
 }
@@ -90,23 +90,24 @@ a:hover {
 .brand-text {
   display: flex;
   flex-direction: column;
+  line-height: 1.1;
 }
 
 .brand-name {
   font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: 1.15rem;
+  letter-spacing: 0.03em;
 }
 
 .brand-tagline {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--muted);
 }
 
-/* Nav */
+/* NAV CORE */
 
 .nav {
+  margin-left: auto;
   display: flex;
   align-items: center;
 }
@@ -114,28 +115,30 @@ a:hover {
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  gap: 0.6rem;
   margin: 0;
   padding: 0;
-  align-items: center;
 }
 
 .nav-links a {
   text-decoration: none;
   font-size: 0.9rem;
-  padding: 0.4rem 0.8rem;
+  padding: 0.35rem 0.75rem;
   border-radius: var(--radius-pill);
   color: var(--muted);
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: background-color 0.16s ease, color 0.16s ease,
+    transform 0.1s ease;
 }
 
 .nav-links a:hover {
-  background-color: var(--primary-soft);
+  background-color: rgba(1, 65, 162, 0.08);
   color: var(--primary);
+  transform: translateY(-1px);
 }
 
 .nav-links a.active {
-  background-color: rgba(1, 65, 162, 0.12);
+  background-color: rgba(1, 65, 162, 0.15);
   color: var(--primary);
   font-weight: 600;
 }
@@ -143,22 +146,72 @@ a:hover {
 /* Donate as special nav item */
 
 .nav-donate {
-  background-color: var(--accent);
+  background-color: #f5b041;
   color: #000 !important;
   font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  box-shadow: 0 6px 16px rgba(245, 176, 65, 0.4);
 }
 
 .nav-donate:hover {
-  background-color: #ffbf55;
+  background-color: #eaa136;
 }
 
-/* Mobile nav toggle */
+/* LANGUAGE TOGGLE AS LAST NAV ITEM */
+
+.nav-lang-item {
+  margin-left: 0.4rem;
+}
+
+.lang-toggle {
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-soft);
+  background-color: #ffffff;
+  color: var(--muted);
+  font-size: 0.8rem;
+  padding: 0.18rem 0.65rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(10, 30, 70, 0.08);
+}
+
+.lang-toggle-label {
+  font-weight: 500;
+}
+
+.lang-toggle-sep {
+  color: var(--border-soft);
+}
+
+/* Active state based on html[data-lang] */
+
+html[data-lang="en"] .lang-toggle-en {
+  color: var(--primary);
+}
+
+html[data-lang="en"] .lang-toggle-hi {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+html[data-lang="hi"] .lang-toggle-hi {
+  color: var(--primary);
+}
+
+html[data-lang="hi"] .lang-toggle-en {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+/* MOBILE NAV */
 
 .nav-toggle {
   display: none;
   border: none;
   background: none;
-  padding: 0.35rem;
+  padding: 0.25rem;
   cursor: pointer;
 }
 
@@ -169,26 +222,34 @@ a:hover {
   border-radius: 999px;
   background-color: var(--primary);
   margin: 3px 0;
-  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 950px) {
+  .header-inner {
+    padding-inline: 0.75rem;
+  }
+
   .nav-toggle {
     display: inline-flex;
     flex-direction: column;
   }
 
+  .nav {
+    position: relative;
+  }
+
   .nav-links {
     position: absolute;
-    top: 54px;
-    right: 1.5rem;
+    top: 46px;
+    right: 0;
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.45rem;
     background-color: #ffffff;
-    border-radius: 1rem;
-    padding: 0.7rem;
-    min-width: 220px;
-    box-shadow: var(--shadow-soft);
+    padding: 0.7rem 0.9rem;
+    border-radius: 14px;
+    min-width: 200px;
+    box-shadow: 0 14px 36px rgba(10, 26, 60, 0.16);
     opacity: 0;
     transform: translateY(-8px);
     pointer-events: none;
@@ -199,6 +260,15 @@ a:hover {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+  }
+
+  .nav-lang-item {
+    margin-left: 0;
+    margin-top: 0.3rem;
+  }
+
+  .nav-links a {
+    width: 100%;
   }
 }
 
