@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- HEADER + NAV -->
+  <header class="main-header">
+    <div class="header-inner">
+      <!-- Brand -->
+      <a href="index.html" class="brand">
+        <img src="img/SymbolBlue.png" alt="NISA logo" class="brand-logo" width="57" height="44" />
+        <div class="brand-text">
+          <span class="brand-name">NISA</span>
+          <span class="brand-tagline lang-en">Nurturing Independence, Strength &amp; Advocacy</span>
+          <span class="brand-tagline lang-hi">स्वतंत्रता, शक्ति और वकालत</span>
+        </div>
+      </a>
+
+      <!-- Language toggle -->
+      <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Toggle language">
+        <span class="lang-toggle-label lang-toggle-en">EN</span>
+        <span class="lang-toggle-sep">|</span>
+        <span class="lang-toggle-label lang-toggle-hi">हिंदी</span>
+      </button>
+
+      <!-- Mobile nav burger -->
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Navigation -->
+      <nav class="nav">
+        <ul class="nav-links">
+          <!-- Donate first -->
+          <li>
+            <a href="donate.html" class="nav-donate">
+              <span class="lang-en">Donate</span>
+              <span class="lang-hi">दान करें</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="active">
+              <span class="lang-en">Home</span>
+              <span class="lang-hi">होम</span>
+            </a>
+          </li>
+          <li>
+            <a href="about.html">
+              <span class="lang-en">About Us</span>
+              <span class="lang-hi">हमारे बारे में</span>
+            </a>
+          </li>
+          <li>
+            <a href="work.html">
+              <span class="lang-en">Our Work</span>
+              <span class="lang-hi">हमारा काम</span>
+            </a>
+          </li>
+          <li>
+            <a href="get-involved.html">
+              <span class="lang-en">Get Involved</span>
+              <span class="lang-hi">जुड़ें</span>
+            </a>
+          </li>
+          <li>
+            <a href="events.html">
+              <span class="lang-en">Events / Blog</span>
+              <span class="lang-hi">कार्यक्रम / ब्लॉग</span>
+            </a>
+          </li>
+          <li>
+            <a href="gallery.html">
+              <span class="lang-en">Gallery</span>
+              <span class="lang-hi">गैलरी</span>
+            </a>
+          </li>
+          <li>
+            <a href="contact.html">
+              <span class="lang-en">Contact</span>
+              <span class="lang-hi">संपर्क</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE-SPECIFIC CONTENT GOES HERE -->
+  <main class="page">
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <p class="page-kicker">
+      <span class="lang-en">From Our Centre &amp; Community</span>
+      <span class="lang-hi">हमारे केंद्र और समुदाय से</span>
+    </p>
+
+    <h1>
+      <span class="lang-en">Gallery</span>
+      <span class="lang-hi">गैलरी</span>
+    </h1>
+
+    <p class="page-intro">
+      <span class="lang-en">
+        A glimpse into everyday moments at NISA — training sessions, community meetings, women at work and quiet celebrations of progress.
+      </span>
+      <span class="lang-hi">
+        नीसा के रोज़मर्रा के पलों की झलक — प्रशिक्षण सत्र, सामुदायिक बैठकें, काम करती महिलाएँ और प्रगति के छोटे-छोटे उत्सव।
+      </span>
+    </p>
+  </section>
+
+  <!-- GALLERY GRID -->
+  <section class="page-section">
+    <h2>
+      <span class="lang-en">Photos From the Field</span>
+      <span class="lang-hi">मैदान और केंद्र की तस्वीरें</span>
+    </h2>
+
+    <p class="lang-en">
+      Click on any photo to view it in full size. Use the left/right arrows or your keyboard arrow keys to move between images.
+    </p>
+    <p class="lang-hi">
+      किसी भी फोटो पर क्लिक करके उसे पूरा देखें। अगली–पिछली फोटो पर जाने के लिए बाएँ/दाएँ तीर या कीबोर्ड की एरो कुंजियाँ इस्तेमाल करें।
+    </p>
+
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- EXAMPLE ITEMS – replace src with your real images -->
+      <div class="gallery-item">
+        <figure>
+          <img src="img/gallery/training-1.jpg" alt="Women at sewing training" />
+          <figcaption>
+            <span class="lang-en">Sewing training batch at our centre.</span>
+            <span class="lang-hi">हमारे केंद्र में सिलाई प्रशिक्षण का बैच।</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="gallery-item">
+        <figure>
+          <img src="img/gallery/crochet-1.jpg" alt="Women practicing crochet" />
+          <figcaption>
+            <span class="lang-en">Women practicing crochet during afternoon sessions.</span>
+            <span class="lang-hi">दोपहर की कक्षा में क्रोशे का अभ्यास करती महिलाएँ।</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="gallery-item">
+        <figure>
+          <img src="img/gallery/meeting-1.jpg" alt="Community meeting with women" />
+          <figcaption>
+            <span class="lang-en">Community conversation circle on work and safety.</span>
+            <span class="lang-hi">काम और सुरक्षा पर सामुदायिक चर्चा सर्कल।</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="gallery-item">
+        <figure>
+          <img src="img/gallery/literacy-1.jpg" alt="Literacy circle at the centre" />
+          <figcaption>
+            <span class="lang-en">Literacy circle for women who returned to learning.</span>
+            <span class="lang-hi">दोबारा पढ़ाई शुरू करने वाली महिलाओं के लिए साक्षरता सर्कल।</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- Add as many as you want, same structure -->
+      <!--
+      <div class="gallery-item">
+        <figure>
+          <img src="img/gallery/your-photo.jpg" alt="Short alt text" />
+          <figcaption>
+            <span class="lang-en">English caption.</span>
+            <span class="lang-hi">हिंदी कैप्शन।</span>
+          </figcaption>
+        </figure>
+      </div>
+      -->
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop" data-lightbox-close></div>
+
+    <div class="lightbox-inner" role="dialog" aria-modal="true">
+      <button class="lightbox-close" type="button" aria-label="Close" data-lightbox-close>×</button>
+
+      <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous image">
+        ‹
+      </button>
+      <button class="lightbox-nav lightbox-next" type="button" aria-label="Next image">
+        ›
+      </button>
+
+      <div class="lightbox-content">
+        <img id="lightbox-image" src="" alt="" />
+        <p id="lightbox-caption"></p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="footer-inner">
+      <div class="footer-impact">
+        <h4 class="lang-en">Impact Snapshot</h4>
+        <h4 class="lang-hi">प्रभाव संक्षेप</h4>
+        <p>
+          <span class="impact-counter" data-target="80">80</span>+
+          <span class="lang-en">women enrolled</span>
+          <span class="lang-hi">महिलाएँ नामांकित</span>
+        </p>
+        <p>
+          <span class="impact-counter" data-target="300000">300,000</span>+
+          <span class="lang-en">₹ pipeline raised</span>
+          <span class="lang-hi">रुपये की पाइपलाइन</span>
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <a href="privacy.html">
+          <span class="lang-en">Privacy Policy</span>
+          <span class="lang-hi">गोपनीयता नीति</span>
+        </a>
+        <a href="terms.html">
+          <span class="lang-en">Terms of Service</span>
+          <span class="lang-hi">सेवा की शर्तें</span>
+        </a>
+        <a href="refund.html">
+          <span class="lang-en">Refund Policy</span>
+          <span class="lang-hi">धनवापसी नीति</span>
+        </a>
+      </div>
+
+      <p class="copyright">
+        <span class="lang-en">
+          © <span id="year"></span> NISA by Suhale Foundation. All rights reserved.
+        </span>
+        <span class="lang-hi">
+          © <span id="year"></span> नीसा, सुहैले फाउंडेशन द्वारा। सभी अधिकार सुरक्षित।
+        </span>
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
