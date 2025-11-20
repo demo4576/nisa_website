@@ -215,6 +215,45 @@ if (contactForm) {
       ticking = true;
     }  
   });
+
+  /* ===== Advanced hero parallax (background + text) ===== */
+(function setupHeroParallax() {
+  const hero = document.querySelector(".hero");
+  if (!hero) return;
+
+  // We no longer need to calculate heroText offset specifically in JS
+  // if we just want the text to move with the container, 
+  // but your CSS supports text offset, so we keep it.
+
+  let ticking = false;
+
+  function updateParallax() {
+    const scrollY = window.scrollY;
+    // Speed factors: Lower number = slower movement (more depth)
+    // Negative value moves it in opposite direction of scroll
+    const bgSpeed = 0.4; 
+    const textSpeed = 0.15;
+
+    // Calculate the offset
+    // We use translate3d for GPU acceleration
+    const bgOffset = scrollY * bgSpeed;
+    const textOffset = scrollY * textSpeed;
+
+    // Apply to CSS variables
+    hero.style.setProperty("--hero-bg-offset", `${bgOffset}px`);
+    hero.style.setProperty("--hero-text-offset", `${textOffset}px`);
+
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }, { passive: true });
+  
+})();
 });
 
 
