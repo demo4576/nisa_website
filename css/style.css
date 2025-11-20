@@ -256,10 +256,12 @@ html[data-lang="hi"] .lang-toggle-en {
   .nav-toggle {
     display: inline-flex;
     flex-direction: column;
+    margin-left: auto;
   }
 
   .nav {
     position: relative;
+    margin-left: 0;
   }
 
   .nav-links {
@@ -445,6 +447,7 @@ html:not([data-lang]) .lang-hi {
   margin: 0 auto;
   display: grid;
   gap: 2.4rem;
+  padding-inline: 1.5rem;
 }
 
 @media (min-width: 900px) {
@@ -555,6 +558,14 @@ html:not([data-lang]) .lang-hi {
   max-width: 1080px;
   text-align: center;
   font-size: 2rem;
+}
+
+@media (max-width: 640px) {
+  .intro-text {
+    font-size: 1.25rem; /* Much more readable on phone */
+    line-height: 1.6;
+    text-align: left;   /* Optional: Left align often looks better than center on small screens */
+  }
 }
 
 .section-header h2 {
