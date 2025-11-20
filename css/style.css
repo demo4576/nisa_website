@@ -60,6 +60,12 @@ a:hover {
   background: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid rgba(214, 220, 236, 0.7);
   box-shadow: 0 4px 18px rgba(15, 35, 80, 0.06);
+  transition: transform 0.22s ease-out, box-shadow 0.16s ease-out, background-color 0.16s ease-out;
+}
+
+.main-header.main-header--hidden {
+  transform: translateY(-100%);
+  box-shadow: none;
 }
 
 .header-inner {
@@ -416,6 +422,32 @@ html:not([data-lang]) .lang-hi {
   border: 1px solid var(--border-soft);
   background-color: #ffffff;
   box-shadow: var(--shadow-soft);
+}
+
+.hero-section-nav {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.hero-section-nav a {
+  text-decoration: none;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-soft);
+  color: var(--muted);
+  background-color: #ffffff;
+  box-shadow: 0 6px 16px rgba(5, 25, 72, 0.03);
+  transition: background-color 0.16s ease, color 0.16s ease,
+    transform 0.1s ease;
+}
+
+.hero-section-nav a:hover {
+  background-color: var(--primary-soft);
+  color: var(--primary);
+  transform: translateY(-1px);
 }
 
 /* ======== Generic buttons ======== */

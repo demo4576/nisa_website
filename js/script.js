@@ -187,6 +187,34 @@ if (contactForm) {
       showNext(-1);
     }
   });
+  /* ===== Hide header on scroll down, show on scroll up ===== */
+  const header = document.querySelector(".main-header");
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  function updateHeaderOnScroll() {
+    const current = window.scrollY;
+
+    // Only start auto-hiding once we've scrolled a bit
+    if (current > lastScrollY && current > 120) {
+      // scrolling down
+      header?.classList.add("main-header--hidden");
+    } else {
+      // scrolling up or near top
+      header?.classList.remove("main-header--hidden");
+    }
+
+    lastScrollY = current;
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (!header) return;
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeaderOnScroll);
+      ticking = true;
+    }  
+  });
 });
 
 
