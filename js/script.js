@@ -128,6 +128,39 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* =========================================
+     4. HEADER SCROLL STATE (.scrolled on body)
+     ========================================= */
+  (function setupHeaderScrollState() {
+    const hero = document.getElementById("hero");
+    const header = document.querySelector(".split-header");
+    if (!header) return;
+
+    function updateHeader() {
+      // If there's no hero (other pages), just use a small threshold
+      if (!hero) {
+        if (window.scrollY > 50) body.classList.add("scrolled");
+        else body.classList.remove("scrolled");
+        return;
+      }
+
+      const heroRect = hero.getBoundingClientRect();
+      const headerHeight = header.offsetHeight || 0;
+      // When the bottom of the hero is above the header, we consider it "scrolled"
+      const isPastHero = heroRect.bottom - headerHeight <= 0;
+
+      if (isPastHero) {
+        body.classList.add("scrolled");
+      } else {
+        body.classList.remove("scrolled");
+      }
+    }
+
+    // Run once on load and then on scroll
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+  })();
+
+  /* =========================================
      5. CONTACT FORM HANDLING
      ========================================= */
   const contactForm = document.getElementById("contact-form");
