@@ -9,88 +9,202 @@
 <body class="home">
   <div id="site-wrapper">
   <!-- HEADER + NAV -->
-  <header class="main-header">
-  <div class="header-inner">
-    <!-- Brand -->
+  <header class="split-header">
+  
+  <div class="header-side header-left">
     <a href="index.html" class="brand">
       <img src="img/SymbolBlue.png" alt="NISA logo" class="brand-logo" width="46" height="46" />
       <div class="brand-text">
         <span class="brand-name">NISA</span>
-        <span class="brand-tagline">
-          Nurturing Independence, Strength &amp; Advocacy
-        </span>
       </div>
     </a>
+  </div>
 
-    <!-- Mobile burger -->
+  <nav class="header-center nav-pill">
+    <ul class="pill-menu">
+      
+      <li class="pill-item">
+        <button class="pill-link">
+          <span class="lang-en">About NISA</span>
+          <span class="lang-hi">नीसा के बारे में</span>
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1L5 5L9 1"/></svg>
+        </button>
+        <div class="dropdown-mega">
+          <div class="dropdown-inner">
+            <a href="about.html" class="mega-link">
+              <strong>
+                <span class="lang-en">About Us</span>
+                <span class="lang-hi">हमारे बारे में</span>
+              </strong>
+              <span>
+                <span class="lang-en">Our story & mission</span>
+                <span class="lang-hi">हमारी कहानी और मिशन</span>
+              </span>
+            </a>
+            <a href="work.html" class="mega-link">
+              <strong>
+                <span class="lang-en">Our Work</span>
+                <span class="lang-hi">हमारा काम</span>
+              </strong>
+              <span>
+                <span class="lang-en">What we do</span>
+                <span class="lang-hi">हम क्या करते हैं</span>
+              </span>
+            </a>
+            <a href="gallery.html" class="mega-link">
+              <strong>
+                <span class="lang-en">Gallery</span>
+                <span class="lang-hi">गैलरी</span>
+              </strong>
+              <span>
+                <span class="lang-en">Images from the field</span>
+                <span class="lang-hi">मैदान से तस्वीरें</span>
+              </span>
+            </a>
+            <a href="events.html" class="mega-link">
+              <strong>
+                <span class="lang-en">Events & Blog</span>
+                <span class="lang-hi">कार्यक्रम / ब्लॉग</span>
+              </strong>
+              <span>
+                <span class="lang-en">Latest updates</span>
+                <span class="lang-hi">नवीनतम अपडेट</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <li class="pill-item">
+        <button class="pill-link">
+          <span class="lang-en">Take Action</span>
+          <span class="lang-hi">सहयोग करें</span>
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1L5 5L9 1"/></svg>
+        </button>
+        <div class="dropdown-mega">
+          <div class="dropdown-inner">
+            <a href="get-involved.html" class="mega-link">
+              <strong>
+                <span class="lang-en">Volunteer</span>
+                <span class="lang-hi">स्वयंसेवक बनें</span>
+              </strong>
+              <span>
+                <span class="lang-en">Join our team</span>
+                <span class="lang-hi">हमारी टीम में शामिल हों</span>
+              </span>
+            </a>
+            <a href="donate.html" class="mega-link highlight">
+              <strong>
+                <span class="lang-en">Donate</span>
+                <span class="lang-hi">दान करें</span>
+              </strong>
+              <span>
+                <span class="lang-en">Support the cause</span>
+                <span class="lang-hi">आर्थिक सहयोग दें</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <li class="pill-item">
+        <button class="pill-link">
+          <span class="lang-en">Connect</span>
+          <span class="lang-hi">संपर्क करें</span>
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1L5 5L9 1"/></svg>
+        </button>
+        <div class="dropdown-mega">
+          <div class="dropdown-inner">
+            <a href="contact.html" class="mega-link">
+              <strong>
+                <span class="lang-en">Contact Us</span>
+                <span class="lang-hi">संपर्क करें</span>
+              </strong>
+              <span>
+                <span class="lang-en">Get in touch</span>
+                <span class="lang-hi">बातचीत शुरू करें</span>
+              </span>
+            </a>
+            <a href="#footer" class="mega-link"> 
+              <strong>
+                <span class="lang-en">Visit Us</span>
+                <span class="lang-hi">हमसे मिलें</span>
+              </strong>
+              <span>
+                <span class="lang-en">Find us in Jodhpur</span>
+                <span class="lang-hi">जोधपुर में हमारा पता</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </nav>
+
+  <div class="header-side header-right">
+    <button class="lang-toggle" id="lang-toggle" type="button">
+      <span class="lang-toggle-label lang-toggle-en">EN</span>
+      <span class="lang-toggle-sep">|</span>
+      <span class="lang-toggle-label lang-toggle-hi">हिंदी</span>
+    </button>
+    
     <button class="nav-toggle" aria-label="Toggle navigation">
       <span></span><span></span><span></span>
     </button>
-
-    <!-- Navigation -->
-    <nav class="nav">
-      <ul class="nav-links">
-        <!-- Donate first -->
-        <li>
-          <a href="donate.html" class="nav-donate">
-            <span class="lang-en">Donate</span>
-            <span class="lang-hi">दान करें</span>
-          </a>
-        </li>
-        <li>
-          <a href="index.html" class="nav-link-home">
-            <span class="lang-en">Home</span>
-            <span class="lang-hi">होम</span>
-          </a>
-        </li>
-        <li>
-          <a href="about.html">
-            <span class="lang-en">About Us</span>
-            <span class="lang-hi">हमारे बारे में</span>
-          </a>
-        </li>
-        <li>
-          <a href="work.html">
-            <span class="lang-en">Our Work</span>
-            <span class="lang-hi">हमारा काम</span>
-          </a>
-        </li>
-        <li>
-          <a href="get-involved.html">
-            <span class="lang-en">Get Involved</span>
-            <span class="lang-hi">जुड़ें</span>
-          </a>
-        </li>
-        <li>
-          <a href="events.html">
-            <span class="lang-en">Events / Blog</span>
-            <span class="lang-hi">कार्यक्रम / ब्लॉग</span>
-          </a>
-        </li>
-        <li>
-          <a href="gallery.html">
-            <span class="lang-en">Gallery</span>
-            <span class="lang-hi">गैलरी</span>
-          </a>
-        </li>
-        <li>
-          <a href="contact.html">
-            <span class="lang-en">Contact</span>
-            <span class="lang-hi">संपर्क</span>
-          </a>
-        </li>
-
-        <!-- Language toggle ALL THE WAY RIGHT -->
-        <li class="nav-lang-item">
-          <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Toggle language">
-            <span class="lang-toggle-label lang-toggle-en">EN</span>
-            <span class="lang-toggle-sep">|</span>
-            <span class="lang-toggle-label lang-toggle-hi">हिंदी</span>
-          </button>
-        </li>
-      </ul>
-    </nav>
   </div>
+
+  <div class="mobile-menu-overlay" id="mobile-menu">
+    <div class="mobile-menu-inner">
+      
+      <nav class="mobile-nav">
+        <ul class="mobile-list">
+          
+          <li class="mobile-item">
+            <button class="mobile-accordion-btn">
+              <span>About NISA</span>
+              <span class="arrow">+</span>
+            </button>
+            <div class="mobile-sub-menu">
+              <a href="about.html">About Us</a>
+              <a href="work.html">Our Work</a>
+              <a href="gallery.html">Gallery</a>
+              <a href="events.html">Events & Blog</a>
+            </div>
+          </li>
+
+          <li class="mobile-item">
+            <button class="mobile-accordion-btn">
+              <span>Take Action</span>
+              <span class="arrow">+</span>
+            </button>
+            <div class="mobile-sub-menu">
+              <a href="get-involved.html">Volunteer / Intern</a>
+              <a href="donate.html" style="color: var(--accent);">Donate Now</a>
+            </div>
+          </li>
+
+          <li class="mobile-item">
+            <button class="mobile-accordion-btn">
+              <span>Connect</span>
+              <span class="arrow">+</span>
+            </button>
+            <div class="mobile-sub-menu">
+              <a href="contact.html">Contact Us</a>
+              <a href="#footer">Visit Us</a>
+            </div>
+          </li>
+
+        </ul>
+      </nav>
+
+      <div class="mobile-menu-footer">
+        <a href="donate.html" class="btn btn-primary full-width">Donate / दान करें</a>
+      </div>
+
+    </div>
+  </div>
+
 </header>
 
   <!-- PAGE CONTENT -->

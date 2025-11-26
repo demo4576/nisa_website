@@ -1,98 +1,168 @@
-document.addEventListener("DOMContentLoaded", () => {  
+document.addEventListener("DOMContentLoaded", () => {
   /* =========================================
-     1. INITIALIZE LENIS
+     1. INITIALIZE LENIS (SMOOTH SCROLL)
      ========================================= */
   const lenis = new Lenis({
-    duration: 1.2, // Speed of the scroll (higher = smoother/slower)
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easing function
-    orientation: 'vertical', 
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: true,
     wheelMultiplier: 1,
-    smoothTouch: false, // keeping false usually feels more natural on mobile
+    smoothTouch: false,
     touchMultiplier: 2,
   });
 
-  // Standard Lenis Loop (required for it to work)
   function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
 
-
   /* =========================================
      2. UPDATE ANCHOR LINKS TO USE LENIS
      ========================================= */
-  // REPLACES your old "Smooth scroll for in-page anchors" block
   document.body.addEventListener("click", (e) => {
     const link = e.target.closest("a[href^='#']");
     if (!link) return;
 
     const id = link.getAttribute("href").slice(1);
-    if (!id) return; // e.g. href="#"
+    if (!id) return;
 
     const target = document.getElementById(id);
     if (!target) return;
 
     e.preventDefault();
-    
-    // Use Lenis to scroll instead of native method
     lenis.scrollTo(target, {
-      offset: 0, // Adjust this if your sticky header covers content (e.g. -80)
-      duration: 1.5 // Optional: make programatic scrolls slightly slower/elegant
+      offset: 0,
+      duration: 1.5
     });
   });
 
-  /* ===== Mobile nav toggle ===== */
-  const navToggle = document.querySelector(".nav-toggle");
-  const navLinks = document.querySelector(".nav-links");
+  /* =========================================
+     3. NAVIGATION LOGIC (DESKTOP & MOBILE)
+     ========================================= */
+  
+  const body = document.body;
 
-  if (navToggle && navLinks) {
-    navToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("show");
+  // --- A. DESKTOP DROPDOWN (CLICK TO OPEN) ---
+  const desktopPillBtns = document.querySelectorAll(".pill-link");
+
+  desktopPillBtns.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      // Only run this on desktop (when the pill is visible)
+      if (window.innerWidth <= 960) return;
+
+      e.stopPropagation(); // Prevent closing immediately
+      const parentItem = btn.parentElement;
+      const isActive = parentItem.classList.contains("active");
+
+      // 1. Close all other open dropdowns first
+      document.querySelectorAll(".pill-item").forEach(item => {
+        item.classList.remove("active");
+      });
+
+      // 2. If it wasn't active before, open it now
+      if (!isActive) {
+        parentItem.classList.add("active");
+      }
     });
+  });
 
-    navLinks.addEventListener("click", (e) => {
-      if (e.target.tagName === "A" && navLinks.classList.contains("show")) {
-        navLinks.classList.remove("show");
+  // Close Desktop dropdowns when clicking anywhere else on the page
+  document.addEventListener("click", () => {
+    document.querySelectorAll(".pill-item").forEach(item => {
+      item.classList.remove("active");
+    });
+  });
+
+  // Stop clicks inside the dropdown from closing itself
+  document.querySelectorAll(".dropdown-mega").forEach(dropdown => {
+    dropdown.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+  });
+
+
+  // --- B. MOBILE MENU TOGGLE ---
+  const navToggle = document.querySelector(".nav-toggle");
+  
+  if (navToggle) {
+    navToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      body.classList.toggle("menu-open");
+      
+      if (body.classList.contains("menu-open")) {
+        body.style.overflow = "hidden"; // Lock scroll
+      } else {
+        body.style.overflow = "";
       }
     });
   }
 
-  const contactForm = document.getElementById("contact-form");
-const contactStatus = document.getElementById("contact-status");
-
-if (contactForm) {
-  contactForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    contactStatus.textContent = "Sending...";
-    try {
-      const formData = new FormData(contactForm);
-      const response = await fetch(contactForm.action, {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
+  // --- C. MOBILE ACCORDION LOGIC (The + Signs) ---
+  const accordions = document.querySelectorAll(".mobile-accordion-btn");
+  
+  accordions.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevent bubbling issues
+      const item = btn.parentElement;
+      
+      // Close other mobile sections when one opens (Accordion style)
+      document.querySelectorAll(".mobile-item").forEach(other => {
+        if (other !== item) other.classList.remove("active");
       });
 
-      if (response.ok) {
-        contactStatus.textContent = "Thank you for writing to us. We will get back to you soon.";
-        contactForm.reset();
-      } else {
-        contactStatus.textContent = "There was a problem sending your message. Please try again or email us directly.";
-      }
-    } catch (err) {
-      contactStatus.textContent = "Network error. Please check your connection or email us directly.";
-    }
+      // Toggle current
+      item.classList.toggle("active");
+    });
   });
-}
 
+  // Close mobile menu when clicking a link
+  const mobileLinks = document.querySelectorAll(".mobile-sub-menu a");
+  mobileLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      body.classList.remove("menu-open");
+      body.style.overflow = "";
+    });
+  });
 
-  /* ===== Language toggle ===== */
+  /* =========================================
+     5. CONTACT FORM HANDLING
+     ========================================= */
+  const contactForm = document.getElementById("contact-form");
+  const contactStatus = document.getElementById("contact-status");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      contactStatus.textContent = "Sending...";
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch(contactForm.action, {
+          method: "POST",
+          body: formData,
+          headers: { Accept: "application/json" },
+        });
+
+        if (response.ok) {
+          contactStatus.textContent = "Thank you for writing to us. We will get back to you soon.";
+          contactForm.reset();
+        } else {
+          contactStatus.textContent = "There was a problem sending your message. Please try again or email us directly.";
+        }
+      } catch (err) {
+        contactStatus.textContent = "Network error. Please check your connection or email us directly.";
+      }
+    });
+  }
+
+  /* =========================================
+     6. LANGUAGE TOGGLE
+     ========================================= */
   const htmlEl = document.documentElement;
   const langToggleBtn = document.getElementById("lang-toggle");
 
-  // Read saved lang or default to 'en'
   let currentLang = localStorage.getItem("nisaLang") || "en";
 
   function applyLang(lang) {
@@ -110,7 +180,9 @@ if (contactForm) {
     });
   }
 
-  /* ===== Impact counters (home + footer) ===== */
+  /* =========================================
+     7. IMPACT COUNTERS
+     ========================================= */
   const counters = document.querySelectorAll("[data-target]");
 
   const animateCounters = () => {
@@ -134,7 +206,6 @@ if (contactForm) {
           requestAnimationFrame(update);
         }
       };
-
       requestAnimationFrame(update);
     });
   };
@@ -142,13 +213,17 @@ if (contactForm) {
   animateCounters();
   window.addEventListener("scroll", animateCounters);
 
-  /* ===== Footer year ===== */
+  /* =========================================
+     8. FOOTER YEAR
+     ========================================= */
   const yearEl = document.getElementById("year");
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  /* ===== GALLERY LIGHTBOX ===== */
+  /* =========================================
+     9. GALLERY LIGHTBOX
+     ========================================= */
   const galleryImages = document.querySelectorAll(".gallery-item img");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-image");
@@ -167,7 +242,6 @@ if (contactForm) {
 
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt || "";
-    // caption: take the visible caption text
     const cap = img.closest("figure")?.querySelector("figcaption");
     lightboxCaption.textContent = cap ? cap.innerText.trim() : "";
     lightbox.classList.add("open");
@@ -210,82 +284,40 @@ if (contactForm) {
 
   document.addEventListener("keydown", (e) => {
     if (!lightbox || !lightbox.classList.contains("open")) return;
-
-    if (e.key === "Escape") {
-      closeLightbox();
-    } else if (e.key === "ArrowRight") {
-      showNext(1);
-    } else if (e.key === "ArrowLeft") {
-      showNext(-1);
-    }
-  });
-  /* ===== Hide header on scroll down, show on scroll up ===== */
-  const header = document.querySelector(".main-header");
-  let lastScrollY = window.scrollY;
-  let ticking = false;
-
-  function updateHeaderOnScroll() {
-    const current = window.scrollY;
-
-    // Only start auto-hiding once we've scrolled a bit
-    if (current > lastScrollY && current > 120) {
-      // scrolling down
-      header?.classList.add("main-header--hidden");
-    } else {
-      // scrolling up or near top
-      header?.classList.remove("main-header--hidden");
-    }
-
-    lastScrollY = current;
-    ticking = false;
-  }
-
-  window.addEventListener("scroll", () => {
-    if (!header) return;
-    if (!ticking) {
-      window.requestAnimationFrame(updateHeaderOnScroll);
-      ticking = true;
-    }  
+    if (e.key === "Escape") closeLightbox();
+    else if (e.key === "ArrowRight") showNext(1);
+    else if (e.key === "ArrowLeft") showNext(-1);
   });
 
-  /* ===== Advanced hero parallax (background + text) ===== */
-(function setupHeroParallax() {
-  const hero = document.querySelector(".hero");
-  if (!hero) return;
+  /* =========================================
+     10. HERO PARALLAX
+     ========================================= */
+  (function setupHeroParallax() {
+    const hero = document.querySelector(".hero");
+    if (!hero) return;
 
-  // We no longer need to calculate heroText offset specifically in JS
-  // if we just want the text to move with the container, 
-  // but your CSS supports text offset, so we keep it.
+    let ticking = false;
 
-  let ticking = false;
+    function updateParallax() {
+      const scrollY = window.scrollY;
+      const bgSpeed = 0.4;
+      const textSpeed = 0.15;
 
-  function updateParallax() {
-    const scrollY = window.scrollY;
-    // Speed factors: Lower number = slower movement (more depth)
-    // Negative value moves it in opposite direction of scroll
-    const bgSpeed = 0.4; 
-    const textSpeed = 0.15;
+      const bgOffset = scrollY * bgSpeed;
+      const textOffset = scrollY * textSpeed;
 
-    // Calculate the offset
-    // We use translate3d for GPU acceleration
-    const bgOffset = scrollY * bgSpeed;
-    const textOffset = scrollY * textSpeed;
+      hero.style.setProperty("--hero-bg-offset", `${bgOffset}px`);
+      hero.style.setProperty("--hero-text-offset", `${textOffset}px`);
 
-    // Apply to CSS variables
-    hero.style.setProperty("--hero-bg-offset", `${bgOffset}px`);
-    hero.style.setProperty("--hero-text-offset", `${textOffset}px`);
-
-    ticking = false;
-  }
-
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateParallax);
-      ticking = true;
+      ticking = false;
     }
-  }, { passive: true });
-  
-})();
+
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+
 });
-
-
